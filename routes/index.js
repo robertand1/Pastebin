@@ -1,13 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("./database.db");
-
-db.serialize(() => {
-  db.run(
-    "CREATE TABLE IF NOT EXISTS saved_texts (id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT)",
-  );
-});
+const db = require("../helpers/database");
 
 router.get("/", (req, res) => {
   db.all("SELECT * FROM saved_texts ORDER BY id DESC", [], (err, rows) => {
