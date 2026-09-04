@@ -21,7 +21,7 @@ router.get("/text/:id", (req, res) => {
     if (row) {
       res.render("text", { text: row });
     } else {
-      res.send("");
+      res.send("404");
     }
   });
 });
